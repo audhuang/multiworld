@@ -212,3 +212,14 @@ def sawyer_init_camera_zoomed_in(camera):
     camera.azimuth = cam_pos[5]
     camera.trackbodyid = -1
 
+def init_single_camera(camera, i, n): 
+    sawyer_pick_and_place_camera(camera)
+    camera.trackbodyid = i 
+    camera.azimuth = 180. / (n - 1) * i
+    print('CAMERA I:' , i, camera.azimuth)
+
+def init_multiple_cameras(viewer_list): 
+    n_cameras = len(viewer_list)
+    for i in range(n_cameras): 
+        init_single_camera(viewer_list[i].cam, i, n_cameras)
+
